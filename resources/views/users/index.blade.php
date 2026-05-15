@@ -8,6 +8,17 @@
             Users
         </h1>
 
+        <form method="GET" action="/users" class="mb-4">
+
+            <input
+                type="text"
+                name="search"
+                class="form-control"
+                placeholder="Search users..."
+            >
+
+        </form>
+
         @foreach($users as $user)
 
             <div class="card mb-3 border-0 shadow-sm rounded-4">

@@ -5,6 +5,18 @@
 
         <h1>Créer un post</h1>
 
+        @if ($errors->any())
+
+            <div class="alert alert-danger">
+
+                @foreach ($errors->all() as $error)
+                    <p class="mb-0">{{ $error }}</p>
+                @endforeach
+
+            </div>
+
+        @endif
+
         <form action="/posts" method="POST">
             @csrf
 

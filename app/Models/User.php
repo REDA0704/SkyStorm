@@ -46,6 +46,9 @@ class User extends Authenticatable
         ];
     }
 
+    /**
+     * Relation : les utilisateurs qui me suivent (mes followers)
+    */
     public function followers()
     {
         return $this->belongsToMany(
@@ -56,7 +59,9 @@ class User extends Authenticatable
         );
     }
 
-
+    /**
+     * Relation : les utilisateurs que je suis
+    */
     public function following()
     {
         return $this->belongsToMany(
@@ -73,6 +78,9 @@ class User extends Authenticatable
         return $this->belongsToMany(Post::class, 'likes');
     }
 
+    /**
+     * Relation : les posts que j'ai créés
+    */
     public function posts()
     {
         return $this->hasMany(Post::class);

@@ -2,7 +2,11 @@
 
 @section('content')
 
-    <div class="container" style="max-width: 700px;">
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-8">
 
         @foreach($posts as $post)
 
@@ -26,6 +30,7 @@
                     <p class="fs-5 mb-4">
                         {{ $post->content }}
                     </p>
+
 
                     <div class="d-flex gap-2 align-items-center">
 
@@ -95,4 +100,66 @@
 
     </div>
 
+
+        <div class="col-md-4">
+
+            <div class="card border-0 shadow-sm rounded-4">
+
+                <div class="card-body">
+
+                    <h5 class="fw-bold mb-3">
+                        Suggestions
+                    </h5>
+
+                    @foreach($suggestedUsers as $user)
+
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+
+                            <a href="/users/{{ $user->id }}"
+                               class="text-decoration-none text-dark fw-bold">
+
+                                {{ $user->name }}
+
+                            </a>
+
+                            <form action="{{ route('user.follow') }}" method="POST">
+
+                                @csrf
+
+                                <input type="hidden"
+                                       name="following_id"
+                                       value="{{ $user->id }}">
+
+                                <button class="btn btn-sm btn-primary rounded-pill">
+                                    Follow
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    @endforeach
+
+                    <hr>
+
+                    <form action="/users" method="GET">
+
+                        <input
+                            type="text"
+                            name="search"
+                            class="form-control"
+                            placeholder="Search users..."
+                        >
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    </div>
 @endsection
